@@ -4,8 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Joyeux Anniversaire Sohaib ! 🎉</title>
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Canvas Confetti Library -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     
     <style>
         * {
@@ -249,16 +253,19 @@
 </head>
 <body>
 
+    <!-- BACKGROUND VIDEO -->
     <div class="bg-video-container">
         <video autoplay loop muted playsinline>
-            <source src="Pinterest video #1114007657837573868 [1114007657837573868].mp4" type="video/mp4">
+            <source src="bg.mp4" type="video/mp4">
         </video>
     </div>
 
+    <!-- MAIN CONTENT -->
     <div class="main-container">
         <h1 class="header-title">🎉 Joyeux Anniversaire Sohaib ! 🎉</h1>
         <p class="header-subtitle">Cliquez sur les cadeaux pour découvrir vos surprises spéciales !</p>
 
+        <!-- GIFTS BUTTONS -->
         <div class="gifts-section">
             <div class="gift-box" onclick="openGiftModal()">
                 <div class="gift-icon"><i class="fa-solid fa-gift"></i></div>
@@ -271,10 +278,12 @@
             </div>
         </div>
 
+        <!-- PLAYERS AUDIO SECTION (CADEAU #2) -->
         <div id="players-section">
             <h2 class="section-heading">⚽ Messages Vocaux des Légendes ⚽</h2>
             <div class="players-grid">
 
+                <!-- Player 1: Lamine Yamal -->
                 <div class="player-card">
                     <img src="Screenshot_20260906-200752.jpg" alt="Lamine Yamal" class="player-avatar">
                     <div class="player-name">Lamine Yamal</div>
@@ -283,6 +292,7 @@
                     </audio>
                 </div>
 
+                <!-- Player 2: Désiré Doué -->
                 <div class="player-card">
                     <img src="Screenshot_20260906-200632.jpg" alt="Désiré Doué" class="player-avatar">
                     <div class="player-name">Désiré Doué</div>
@@ -291,6 +301,7 @@
                     </audio>
                 </div>
 
+                <!-- Player 3: Kylian Mbappé -->
                 <div class="player-card">
                     <img src="Screenshot_20260906-200704.jpg" alt="Kylian Mbappé" class="player-avatar">
                     <div class="player-name">Kylian Mbappé</div>
@@ -299,6 +310,7 @@
                     </audio>
                 </div>
 
+                <!-- Player 4: Lionel Messi -->
                 <div class="player-card">
                     <img src="Screenshot_20260906-200601.jpg" alt="Lionel Messi" class="player-avatar">
                     <div class="player-name">Lionel Messi</div>
@@ -311,6 +323,7 @@
         </div>
     </div>
 
+    <!-- MODAL FOR CADEAU #1 -->
     <div class="modal-overlay" id="shoe-modal">
         <div class="modal-card">
             <span class="close-btn" onclick="closeGiftModal()">&times;</span>
@@ -321,8 +334,33 @@
         </div>
     </div>
 
+    <!-- AUDIO FOR PARTY HORN -->
+    <audio id="party-horn-sound" preload="auto">
+        <source src="https://files.catbox.moe/920m6e.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- JAVASCRIPT LOGIC -->
     <script>
+        function triggerCelebration() {
+            // Play Party Horn Sound
+            const partyAudio = document.getElementById('party-horn-sound');
+            if (partyAudio) {
+                partyAudio.currentTime = 0;
+                partyAudio.play().catch(() => {});
+            }
+
+            // Launch Confetti Effect
+            if (typeof confetti === 'function') {
+                confetti({
+                    particleCount: 120,
+                    spread: 80,
+                    origin: { y: 0.6 }
+                });
+            }
+        }
+
         function openGiftModal() {
+            triggerCelebration();
             document.getElementById('shoe-modal').classList.add('active');
         }
 
@@ -331,6 +369,7 @@
         }
 
         function unlockAudioGift() {
+            triggerCelebration();
             const playersSection = document.getElementById('players-section');
             playersSection.style.display = 'block';
             playersSection.scrollIntoView({ behavior: 'smooth' });
