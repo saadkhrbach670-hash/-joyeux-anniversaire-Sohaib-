@@ -3,75 +3,90 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>محرر الكود المباشر | HTM Creates Clone</title>
+  <title>Happy Birthday 🎉 | مفاجأة عيد الميلاد</title>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: system-ui, sans-serif; background: #1e1e2e; color: #fff; height: 100vh; display: flex; flex-direction: column; }
-    header { background: #181825; padding: 15px 20px; border-bottom: 1px solid #313244; display: flex; justify-content: space-between; align-items: center; }
-    h1 { font-size: 1.2rem; color: #cdd6f4; }
-    .container { display: flex; flex: 1; height: calc(100vh - 60px); }
-    .editors { width: 50%; display: flex; flex-direction: column; border-left: 1px solid #313244; background: #1e1e2e; }
-    .editor-box { flex: 1; display: flex; flex-direction: column; border-bottom: 1px solid #313244; }
-    .editor-box label { background: #313244; padding: 5px 12px; font-size: 0.85rem; color: #a6adc8; font-weight: bold; }
-    textarea { flex: 1; background: #1e1e2e; color: #a6e3a1; border: none; padding: 10px; font-family: monospace; font-size: 0.95rem; resize: none; outline: none; }
-    .preview { width: 50%; background: #ffffff; }
-    iframe { width: 100%; height: 100%; border: none; }
-    @media (max-width: 768px) {
-      .container { flex-direction: column; }
-      .editors, .preview { width: 100%; height: 50%; }
-    }
+    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #0f172a; color: #f8fafc; text-align: center; padding: 20px; min-height: 100vh; }
+    .card { background: #1e293b; max-width: 650px; margin: 20px auto; padding: 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); border: 2px solid #38bdf8; }
+    h1 { color: #38bdf8; font-size: 2.2rem; margin-bottom: 10px; }
+    p.subtitle { color: #94a3b8; font-size: 1.1rem; margin-bottom: 25px; }
+    
+    /* الكعكة والشمعة */
+    .cake-container { margin: 30px 0; cursor: pointer; display: inline-block; position: relative; }
+    .cake { font-size: 80px; }
+    .flame { font-size: 30px; position: absolute; top: -15px; left: 50%; transform: translateX(-50%); animation: flicker 0.6s infinite alternate; }
+    @keyframes flicker { 0% { opacity: 1; transform: translateX(-50%) scale(1); } 100% { opacity: 0.7; transform: translateX(-50%) scale(1.2); } }
+    
+    /* الرسالة */
+    .message-box { background: #334155; padding: 20px; border-radius: 12px; margin: 20px 0; font-size: 1.1rem; line-height: 1.8; color: #e2e8f0; text-align: right; }
+    
+    /* الأزرار */
+    .btn { background: #ec4899; color: white; border: none; padding: 12px 25px; font-size: 1rem; font-weight: bold; border-radius: 30px; cursor: pointer; transition: 0.3s; margin: 5px; }
+    .btn:hover { background: #db2777; transform: scale(1.05); }
+
+    /* محرر كود تفاعلي صغير للذكريات */
+    .code-section { margin-top: 30px; text-align: right; }
+    .code-section label { display: block; margin-bottom: 8px; color: #38bdf8; font-weight: bold; }
+    textarea { width: 100%; height: 120px; background: #0f172a; color: #4ade80; border: 1px solid #475569; padding: 12px; border-radius: 10px; font-family: monospace; direction: ltr; text-align: left; resize: none; }
   </style>
 </head>
 <body>
 
-  <header>
-    <h1>محرر ومستعرض الكود المباشر</h1>
-  </header>
+  <div class="card">
+    <h1>🎉 عيد ميلاد سعيد يا صديقي! 🎉</h1>
+    <p class="subtitle">موقع خاص تم إنشاؤه وبرمجته خصيصاً لك بمناسبة عيد ميلادك</p>
 
-  <div class="container">
-    <!-- منطقة كتابة الكود -->
-    <div class="editors">
-      <div class="editor-box">
-        <label>HTML</label>
-        <textarea id="html" placeholder="اكتب كود HTML هنا..."></textarea>
-      </div>
-      <div class="editor-box">
-        <label>CSS</label>
-        <textarea id="css" placeholder="اكتب كود CSS هنا..."></textarea>
-      </div>
-      <div class="editor-box">
-        <label>JavaScript</label>
-        <textarea id="js" placeholder="اكتب كود JS هنا..."></textarea>
-      </div>
+    <!-- كعكة الشمعة التفاعلية -->
+    <div class="cake-container" onclick="blowCandle()">
+      <div id="flame" class="flame">🔥</div>
+      <div class="cake">🎂</div>
+      <p style="font-size: 0.85rem; color: #94a3b8; margin-top: 5px;">(اضغط على الكعكة لإطفاء الشمعة وافتتاح الحفلة! 🥳)</p>
     </div>
 
-    <!-- منطقة المعاينة الحية -->
-    <div class="preview">
-      <iframe id="output"></iframe>
+    <!-- رسالة التهنئة والشكر -->
+    <div class="message-box">
+      <p><strong>كل عام وأنت بألف خير يا أخي وصديقي العزيز! ❤️</strong></p>
+      <p>أردت أن أقدم لك هدية مختلفة هذا العام، موقعاً إلكترونياً خاصاً بك. شكراً لك على كل اللحظات الجميلة والأوقات الرائعة التي تشاركناها معاً. أتمنى لك سنة جديدة مليئة بالنجاح، السعادة، وتحقيق كل أحلامك!</p>
+    </div>
+
+    <!-- زر الألعاب النارية والموسيقى -->
+    <button class="btn" onclick="celebrate()">احتفل الآن! 🎈</button>
+
+    <!-- منطقة تفاعلية لكتابة الذكريات أو الكود -->
+    <div class="code-section">
+      <label>📝 مساحة خاصة لك (اكتب أمنيتك لهذه السنة):</label>
+
+`<textarea placeholder="// اكتب أمنياتك أو ذكرياتك هنا...&#10;const wish = 'أتمنى أن تكون هذه السنة مليئة بالأرباح والنجاح!';"></textarea>`
     </div>
   </div>
 
   <script>
-    function runCode() {
-      const html = document.getElementById('html').value;
-      const css = "<style>" + document.getElementById('css').value + "</style>";
-      const js = "<script>" + document.getElementById('js').value + "<\/script>";
-      
-      const output = document.getElementById('output').contentWindow.document;
-      output.open();
-      output.write(html + css + js);
-      output.close();
+    // إطفاء الشمعة والألعاب النارية
+    function blowCandle() {
+      const flame = document.getElementById('flame');
+      if (flame.style.display !== 'none') {
+        flame.style.display = 'none';
+        celebrate();
+        alert("🎉 تم إطفاء الشمعة! نتمنى أن تتحقق كل أمنياتك هذا العام!");
+      } else {
+        celebrate();
+      }
     }
 
-    // تشغيل الكود تلقائياً أثناء الكتابة
-    document.getElementById('html').addEventListener('input', runCode);
-    document.getElementById('css').addEventListener('input', runCode);
-    document.getElementById('js').addEventListener('input', runCode);
+    // إطلاق الألعاب النارية (Confetti)
+    function celebrate() {
+      confetti({
+        particleCount: 150,
+        spread: 80,
+        origin: { y: 0.6 }
+      });
+    }
 
-    // كود افتراضي مبدئي
-    document.getElementById('html').value = '<h1 class="title">مرحباً بك!</h1>\n<p>اكتب كودك هنا وتأكد من النتيجة فوراً.</p>';
-    document.getElementById('css').value = 'body {\n  font-family: sans-serif;\n  text-align: center;\n  padding-top: 50px;\n}\n.title {\n  color: #89b4fa;\n}';
-    runCode();
+    // إطلاق تلقائي للـ Confetti عند فتح الصفحة
+    window.onload = function() {
+      celebrate();
+    };
   </script>
 
 </body>
