@@ -22,7 +22,7 @@
             min-height: 100vh;
         }
 
-        /* 1. INTRO SCREEN (VIDEO) */
+        /* 1. INTRO OVERLAY */
         #intro-overlay {
             position: fixed;
             top: 0;
@@ -32,15 +32,57 @@
             background-color: #000;
             z-index: 9999;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
-            transition: opacity 1s ease, visibility 1s ease;
+            transition: opacity 0.8s ease, visibility 0.8s ease;
         }
 
         #intro-video {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
             object-fit: cover;
+        }
+
+        .start-btn-container {
+            position: absolute;
+            z-index: 10000;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .start-btn {
+            background: linear-gradient(45deg, #38bdf8, #ec4899);
+            color: white;
+            border: none;
+            padding: 16px 32px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 0 25px rgba(56, 189, 248, 0.6);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .start-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 35px rgba(236, 72, 153, 0.8);
+        }
+
+        .skip-btn {
+            background: rgba(255, 255, 255, 0.2);
+            color: #cbd5e1;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            padding: 8px 20px;
+            font-size: 0.9rem;
+            border-radius: 30px;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
         }
 
         /* 2. BACKGROUND VIDEO */
@@ -58,7 +100,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            filter: brightness(0.6) blur(2px);
+            filter: brightness(0.5) blur(2px);
         }
 
         /* MAIN CONTAINER & GLASSMORPHISM */
@@ -70,7 +112,7 @@
         }
 
         .header-title {
-            font-size: 2.8rem;
+            font-size: 2.5rem;
             font-weight: 700;
             margin-bottom: 10px;
             text-shadow: 0 0 20px rgba(56, 189, 248, 0.6);
@@ -80,7 +122,7 @@
         }
 
         .header-subtitle {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             color: #cbd5e1;
             margin-bottom: 40px;
         }
@@ -89,9 +131,9 @@
         .gifts-section {
             display: flex;
             justify-content: center;
-            gap: 30px;
+            gap: 25px;
             flex-wrap: wrap;
-            margin-bottom: 50px;
+            margin-bottom: 40px;
         }
 
         .gift-box {
@@ -101,27 +143,27 @@
             border: 1px solid rgba(255, 255, 255, 0.2);
             border-radius: 20px;
             padding: 30px 20px;
-            width: 280px;
+            width: 260px;
             cursor: pointer;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
         }
 
         .gift-box:hover {
-            transform: translateY(-10px) scale(1.03);
+            transform: translateY(-8px) scale(1.02);
             border-color: #38bdf8;
             box-shadow: 0 12px 40px rgba(56, 189, 248, 0.4);
         }
 
         .gift-icon {
-            font-size: 4rem;
+            font-size: 3.5rem;
             margin-bottom: 15px;
             color: #f43f5e;
             animation: pulse 1.8s infinite;
         }
 
         .gift-title {
-            font-size: 1.4rem;
+            font-size: 1.3rem;
             font-weight: 600;
             color: #ffffff;
         }
@@ -139,11 +181,11 @@
             left: 0;
             width: 100vw;
             height: 100vh;
-            background: rgba(0, 0, 0, 0.8);
+            background: rgba(0, 0, 0, 0.85);
             display: flex;
             justify-content: center;
             align-items: center;
-            z-index: 1000;
+            z-index: 10000;
             opacity: 0;
             visibility: hidden;
             transition: opacity 0.3s ease, visibility 0.3s ease;
@@ -160,9 +202,9 @@
             backdrop-filter: blur(20px);
             border: 1px solid rgba(255, 255, 255, 0.2);
             border-radius: 24px;
-            max-width: 500px;
+            max-width: 480px;
             width: 100%;
-            padding: 30px;
+            padding: 25px;
             text-align: center;
             position: relative;
             box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
@@ -172,19 +214,14 @@
             position: absolute;
             top: 15px;
             right: 20px;
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             color: #94a3b8;
             cursor: pointer;
-            transition: color 0.2s;
-        }
-
-        .close-btn:hover {
-            color: #ffffff;
         }
 
         .shoe-img {
             width: 100%;
-            max-height: 250px;
+            max-height: 220px;
             object-fit: cover;
             border-radius: 16px;
             margin-bottom: 20px;
@@ -192,7 +229,7 @@
         }
 
         .modal-message {
-            font-size: 1rem;
+            font-size: 0.95rem;
             line-height: 1.6;
             color: #e2e8f0;
             text-align: justify;
@@ -201,21 +238,21 @@
         /* PLAYERS SECTION (CADEAU #2) */
         #players-section {
             display: none;
-            margin-top: 40px;
-            animation: fadeIn 1s ease forwards;
+            margin-top: 30px;
+            animation: fadeIn 0.8s ease forwards;
         }
 
         .section-heading {
-            font-size: 2rem;
-            margin-bottom: 30px;
+            font-size: 1.8rem;
+            margin-bottom: 25px;
             color: #38bdf8;
             text-shadow: 0 0 10px rgba(56, 189, 248, 0.5);
         }
 
         .players-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 25px;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
         }
 
         .player-card {
@@ -225,41 +262,33 @@
             border-radius: 20px;
             padding: 20px;
             text-align: center;
-            transition: all 0.3s ease;
-        }
-
-        .player-card:hover {
-            border-color: #ec4899;
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(236, 72, 153, 0.3);
         }
 
         .player-avatar {
-            width: 100px;
-            height: 100px;
+            width: 90px;
+            height: 90px;
             border-radius: 50%;
             object-fit: cover;
-            margin: 0 auto 15px auto;
+            margin: 0 auto 12px auto;
             border: 3px solid #38bdf8;
             box-shadow: 0 0 15px rgba(56, 189, 248, 0.5);
         }
 
         .player-name {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             font-weight: 600;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
             color: #ffffff;
         }
 
         audio {
             width: 100%;
-            height: 40px;
+            height: 38px;
             border-radius: 10px;
-            outline: none;
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
+            from { opacity: 0; transform: translateY(15px); }
             to { opacity: 1; transform: translateY(0); }
         }
     </style>
@@ -267,14 +296,22 @@
 <body>
 
     <div id="intro-overlay">
-        <video id="intro-video" autoplay playsinline>
+        <video id="intro-video" playsinline preload="auto">
             <source src="Pinterest video #1114007657837573868 [1114007657837573868].mp4" type="video/mp4">
-            Votre navigateur ne prend pas en charge la vidéo.
         </video>
+        
+        <div class="start-btn-container" id="start-container">
+            <button class="start-btn" onclick="playIntroVideo()">
+                <i class="fa-solid fa-play"></i> Lancer l'expérience 🚀
+            </button>
+            <button class="skip-btn" onclick="closeIntro()">
+                Passer l'intro ⏩
+            </button>
+        </div>
     </div>
 
     <div class="bg-video-container">
-        <video autoplay loop muted playsinline>
+        <video id="bg-video" autoplay loop muted playsinline>
             <source src="Pinterest video #1114007657837573868 [1114007657837573868].mp4" type="video/mp4">
         </video>
     </div>
@@ -346,33 +383,37 @@
     </div>
 
     <script>
-        // 1. Handle Intro Video Completion
         const introOverlay = document.getElementById('intro-overlay');
         const introVideo = document.getElementById('intro-video');
+        const startContainer = document.getElementById('start-container');
 
-        introVideo.onended = function() {
+        function playIntroVideo() {
+            startContainer.style.display = 'none';
+            introVideo.play().then(() => {
+                introVideo.onended = function() {
+                    closeIntro();
+                };
+            }).catch(error => {
+                console.log("Erreur de lecture vidéo:", error);
+                closeIntro();
+            });
+        }
+
+        function closeIntro() {
             introOverlay.style.opacity = '0';
             setTimeout(() => {
                 introOverlay.style.display = 'none';
-            }, 1000);
-        };
+            }, 800);
+        }
 
-        // Fallback safety if video can't autoplay on mobile
-        introVideo.onerror = function() {
-            introOverlay.style.display = 'none';
-        };
-
-        // 2. Open Gift Modal #1
         function openGiftModal() {
             document.getElementById('shoe-modal').classList.add('active');
         }
 
-        // Close Gift Modal #1
         function closeGiftModal() {
             document.getElementById('shoe-modal').classList.remove('active');
         }
 
-        // 3. Unlock Gift #2 (Audio Players)
         function unlockAudioGift() {
             const playersSection = document.getElementById('players-section');
             playersSection.style.display = 'block';
