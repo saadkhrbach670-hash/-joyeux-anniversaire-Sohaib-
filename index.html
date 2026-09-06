@@ -13,7 +13,7 @@
     p.subtitle { color: #94a3b8; font-size: 1.1rem; margin-bottom: 25px; }
     
     /* الكعكة والشمعة */
-    .cake-container { margin: 30px 0; cursor: pointer; display: inline-block; position: relative; }
+    .cake-container { margin: 20px 0; cursor: pointer; display: inline-block; position: relative; }
     .cake { font-size: 80px; }
     .flame { font-size: 30px; position: absolute; top: -15px; left: 50%; transform: translateX(-50%); animation: flicker 0.6s infinite alternate; }
     @keyframes flicker { 0% { opacity: 1; transform: translateX(-50%) scale(1); } 100% { opacity: 0.7; transform: translateX(-50%) scale(1.2); } }
@@ -22,71 +22,93 @@
     .message-box { background: #334155; padding: 20px; border-radius: 12px; margin: 20px 0; font-size: 1.1rem; line-height: 1.8; color: #e2e8f0; text-align: right; }
     
     /* الأزرار */
-    .btn { background: #ec4899; color: white; border: none; padding: 12px 25px; font-size: 1rem; font-weight: bold; border-radius: 30px; cursor: pointer; transition: 0.3s; margin: 5px; }
+    .btn { background: #ec4899; color: white; border: none; padding: 12px 25px; font-size: 1rem; font-weight: bold; border-radius: 30px; cursor: pointer; transition: 0.3s; margin: 10px 5px; }
     .btn:hover { background: #db2777; transform: scale(1.05); }
+    .btn-gift { background: #eab308; color: #0f172a; }
+    .btn-audio { background: #22c55e; color: white; width: 100%; margin-top: 10px; text-align: center; display: flex; align-items: center; justify-content: center; gap: 10px; font-size: 1.1rem; }
+    .btn-audio:hover { background: #16a34a; }
 
-    /* محرر كود تفاعلي صغير للذكريات */
-    .code-section { margin-top: 30px; text-align: right; }
-    .code-section label { display: block; margin-bottom: 8px; color: #38bdf8; font-weight: bold; }
-    textarea { width: 100%; height: 120px; background: #0f172a; color: #4ade80; border: 1px solid #475569; padding: 12px; border-radius: 10px; font-family: monospace; direction: ltr; text-align: left; resize: none; }
+    /* قسم الأصوات والهدايا */
+    .audio-section { background: #0f172a; padding: 20px; border-radius: 15px; margin: 20px 0; border: 1px solid #22c55e; }
+    .gift-box { display: none; margin-top: 25px; background: #0f172a; padding: 20px; border-radius: 15px; border: 2px dashed #eab308; animation: fadeIn 0.8s ease-in-out; }
+    .shoe-img { width: 100%; max-width: 350px; border-radius: 12px; margin-top: 15px; filter: drop-shadow(0px 10px 15px rgba(234, 179, 8, 0.4)); }
+
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
   </style>
 </head>
 <body>
 
   <div class="card">
-    <h1>🎉 عيد ميلاد سعيد يا صديقي! 🎉</h1>
-    <p class="subtitle">موقع خاص تم إنشاؤه وبرمجته خصيصاً لك بمناسبة عيد ميلادك</p>
+    <h1>🎉 عيد ميلاد سعيد يا صهايب! 🎉</h1>
+    <p class="subtitle">موقع تجريبي خاص تم إنشاؤه من طرف سعد ⚽</p>
 
-    <!-- كعكة الشمعة التفاعلية -->
+    <!-- كعكة الشمعة -->
     <div class="cake-container" onclick="blowCandle()">
       <div id="flame" class="flame">🔥</div>
       <div class="cake">🎂</div>
-      <p style="font-size: 0.85rem; color: #94a3b8; margin-top: 5px;">(اضغط على الكعكة لإطفاء الشمعة وافتتاح الحفلة! 🥳)</p>
+      <p style="font-size: 0.85rem; color: #94a3b8; margin-top: 5px;">(اضغط على الكعكة لإطفاء الشمعة! 🥳)</p>
     </div>
 
-    <!-- رسالة التهنئة والشكر -->
+    <!-- رسالة التهنئة -->
     <div class="message-box">
-      <p><strong>كل عام وأنت بألف خير يا أخي وصديقي العزيز! ❤️</strong></p>
-      <p>أردت أن أقدم لك هدية مختلفة هذا العام، موقعاً إلكترونياً خاصاً بك. شكراً لك على كل اللحظات الجميلة والأوقات الرائعة التي تشاركناها معاً. أتمنى لك سنة جديدة مليئة بالنجاح، السعادة، وتحقيق كل أحلامك!</p>
+      <p><strong>كل عام وأنت بألف خير يا أخي وصديقي العزيز صهايب! ❤️</strong></p>
+      <p>أردت أن أقدم لك هدية مختلفة ومميزة هذا العام. شكراً لك على كل الأوقات واللحظات الجيدة، وأتمنى لك سنة جديدة مليئة بالنجاح، السعادة، وكل التوفيق!</p>
     </div>
 
-    <!-- زر الألعاب النارية والموسيقى -->
+    <!-- قسم التجربة الصوتية بلامين يامال -->
+    <div class="audio-section">
+      <h3 style="color: #22c55e; margin-bottom: 12px;">🎙️ تجربة التهنئة الصوتية:</h3>
+      <button class="btn btn-audio" onclick="playAudio('https://files.catbox.moe/mue54m.mp3')">
+        <span>⚽ استمع لتهنئة لامين يامال (Lamine Yamal)</span> ▶️
+      </button>
+    </div>
+
+    <!-- أزرار المفاجآت -->
     <button class="btn" onclick="celebrate()">احتفل الآن! 🎈</button>
+    <button class="btn btn-gift" onclick="openGift()">افتح هديتك الخاصة 🎁</button>
 
-    <!-- منطقة تفاعلية لكتابة الذكريات أو الكود -->
-    <div class="code-section">
-      <label>📝 مساحة خاصة لك (اكتب أمنيتك لهذه السنة):</label>
-
-`<textarea placeholder="// اكتب أمنياتك أو ذكرياتك هنا...&#10;const wish = 'أتمنى أن تكون هذه السنة مليئة بالأرباح والنجاح!';"></textarea>`
+    <!-- مفاجأة الحذاء الرياضي -->
+    <div id="giftSection" class="gift-box">
+      <h2 style="color: #eab308; font-size: 1.5rem;">👟 هديتك الخاصة! 👟</h2>
+      <p style="margin-top: 8px; color: #cbd5e1;">هذا الحذاء الرياضي المميز أهديته لك خصيصاً لأنك تستحقه!</p>
+      <img class="shoe-img" src="https://www.pngall.com/wp-content/uploads/5/White-Nike-Air-Force-1-Low-Sneaker-PNG.png" alt="الحذاء الرياضي">
     </div>
   </div>
 
   <script>
-    // إطفاء الشمعة والألعاب النارية
+    let currentAudio = null;
+
+    function playAudio(url) {
+      if (currentAudio) {
+        currentAudio.pause();
+      }
+      currentAudio = new Audio(url);
+      currentAudio.play();
+    }
+
     function blowCandle() {
       const flame = document.getElementById('flame');
       if (flame.style.display !== 'none') {
         flame.style.display = 'none';
         celebrate();
         alert("🎉 تم إطفاء الشمعة! نتمنى أن تتحقق كل أمنياتك هذا العام!");
-      } else {
-        celebrate();
+      } else { 
+        celebrate(); 
       }
     }
 
-    // إطلاق الألعاب النارية (Confetti)
     function celebrate() {
-      confetti({
-        particleCount: 150,
-        spread: 80,
-        origin: { y: 0.6 }
-      });
+      confetti({ particleCount: 150, spread: 80, origin: { y: 0.6 } });
     }
 
-    // إطلاق تلقائي للـ Confetti عند فتح الصفحة
-    window.onload = function() {
+    function openGift() {
+      const giftSection = document.getElementById('giftSection');
+      giftSection.style.display = 'block';
       celebrate();
-    };
+      giftSection.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    window.onload = function() { celebrate(); };
   </script>
 
 </body>
