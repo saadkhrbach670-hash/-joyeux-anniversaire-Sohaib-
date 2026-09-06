@@ -9,7 +9,7 @@
     * { box-sizing: border-box; margin: 0; padding: 0; }
     
     body { 
-      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, "Apple Color Emoji", "Segoe UI Emoji", sans-serif; 
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif; 
       background: #090d16; 
       color: #f8fafc; 
       text-align: center; 
@@ -32,18 +32,51 @@
       border: 1px solid rgba(255, 255, 255, 0.08); 
     }
 
+    /* تنسيق إيموجيات الآيفون بدقة high resolution */
+    .ios-emoji {
+      width: 1.3em;
+      height: 1.3em;
+      vertical-align: -0.25em;
+      display: inline-block;
+    }
+
+    .ios-emoji-big {
+      width: 75px;
+      height: 75px;
+      display: block;
+      margin: 0 auto;
+    }
+
+    .ios-emoji-flame {
+      width: 32px;
+      height: 32px;
+      position: absolute;
+      top: -18px;
+      left: 50%;
+      transform: translateX(-50%);
+      animation: flicker 0.6s infinite alternate;
+    }
+
     h1 { 
       color: #38bdf8; 
-      font-size: 2rem; 
+      font-size: 1.9rem; 
       font-weight: 800;
       margin-bottom: 8px; 
-      letter-spacing: -0.5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      flex-wrap: wrap;
     }
 
     p.subtitle { 
       color: #94a3b8; 
-      font-size: 1rem; 
+      font-size: 0.98rem; 
       margin-bottom: 25px; 
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
     }
 
     /* الكعكة والشمعة */
@@ -54,15 +87,7 @@
       position: relative; 
       user-select: none;
     }
-    .cake { font-size: 85px; }
-    .flame { 
-      font-size: 32px; 
-      position: absolute; 
-      top: -18px; 
-      left: 50%; 
-      transform: translateX(-50%); 
-      animation: flicker 0.6s infinite alternate; 
-    }
+
     @keyframes flicker { 0% { opacity: 1; transform: translateX(-50%) scale(1); } 100% { opacity: 0.75; transform: translateX(-50%) scale(1.2); } }
 
     /* الرسالة */
@@ -78,7 +103,7 @@
       border: 1px solid rgba(255, 255, 255, 0.05);
     }
 
-    /* أزرار عصرية بأسلوب iOS Glassmorphism */
+    /* أزرار iOS Glassmorphism */
     .btn-group {
       display: flex;
       flex-direction: column;
@@ -154,39 +179,69 @@
 <body>
 
   <div class="card">
-    <h1>🎉 عيد ميلاد سعيد يا صهايب! 🎉</h1>
-    <p class="subtitle">موقع خاص تم إنشاؤه وبرمجته خصيصاً لك من طرف سعد ⚽</p>
+    <h1>
+      <img src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f389.png" class="ios-emoji" alt="🎉">
+      عيد ميلاد سعيد يا صهايب!
+      <img src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f389.png" class="ios-emoji" alt="🎉">
+    </h1>
+    <p class="subtitle">
+      موقع خاص تم إنشاؤه وبرمجته خصيصاً لك من طرف سعد 
+      <img src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/26bd.png" class="ios-emoji" alt="⚽">
+    </p>
 
     <!-- كعكة الشمعة -->
     <div class="cake-container" onclick="blowCandle()">
-      <div id="flame" class="flame">🔥</div>
-      <div class="cake">🎂</div>
-      <p style="font-size: 0.85rem; color: #94a3b8; margin-top: 8px;">(اضغط على الكعكة لإطفاء الشمعة! 🥳)</p>
+      <img id="flame" src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f525.png" class="ios-emoji-flame" alt="🔥">
+      <img src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f382.png" class="ios-emoji-big" alt="🎂">
+      <p style="font-size: 0.85rem; color: #94a3b8; margin-top: 10px;">
+        (اضغط على الكعكة لإطفاء الشمعة! <img src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f973.png" class="ios-emoji" alt="🥳">)
+      </p>
     </div>
 
     <!-- رسالة التهنئة -->
     <div class="message-box">
-      <p><strong>كل عام وأنت بألف خير يا أخي وصديقي العزيز صهايب! ❤️</strong></p>
+      <p>
+        <strong>كل عام وأنت بألف خير يا أخي وصديقي العزيز صهايب! 
+          <img src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/2764-fe0f.png" class="ios-emoji" alt="❤️">
+        </strong>
+      </p>
       <p>أردت أن أقدم لك هدية مختلفة ومميزة هذا العام. شكراً لك على كل الأوقات واللحظات الجيدة، وأتمنى لك سنة جديدة مليئة بالنجاح، السعادة، وكل التوفيق!</p>
     </div>
 
     <!-- قسم الأصوات -->
     <div class="audio-section">
-      <h3 style="color: #4ade80; margin-bottom: 12px; font-size: 1.1rem;">🎙️ التهنئة الصوتية الخاصة:</h3>
+      <h3 style="color: #4ade80; margin-bottom: 12px; font-size: 1.1rem; display: flex; align-items: center; justify-content: center; gap: 6px;">
+        <img src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f399-fe0f.png" class="ios-emoji" alt="🎙️">
+        التهنئة الصوتية الخاصة:
+      </h3>
       <button class="btn btn-audio" onclick="playAudio('https://files.catbox.moe/mue54m.mp3')">
-        <span>⚽ استمع لتهنئة لامين يامال</span> ▶️
+        <span>
+          <img src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/26bd.png" class="ios-emoji" alt="⚽">
+          استمع لتهنئة لامين يامال
+        </span> 
+        ▶️
       </button>
     </div>
 
     <!-- أزرار التفاعل والمفاجآت -->
     <div class="btn-group">
-      <button class="btn" onclick="celebrate()">احتفل الآن! 🎈</button>
-      <button class="btn btn-gift" onclick="openGift()">افتح هديتك الخاصة 🎁</button>
+      <button class="btn" onclick="celebrate()">
+        احتفل الآن! 
+        <img src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f388.png" class="ios-emoji" alt="🎈">
+      </button>
+      <button class="btn btn-gift" onclick="openGift()">
+        افتح هديتك الخاصة 
+        <img src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f381.png" class="ios-emoji" alt="🎁">
+      </button>
     </div>
 
     <!-- مفاجأة الحذاء الرياضي -->
     <div id="giftSection" class="gift-box">
-      <h2 style="color: #eab308; font-size: 1.4rem;">👟 هديتك الخاصة! 👟</h2>
+      <h2 style="color: #eab308; font-size: 1.4rem; display: flex; align-items: center; justify-content: center; gap: 8px;">
+        <img src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f45f.png" class="ios-emoji" alt="👟">
+        هديتك الخاصة! 
+        <img src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f45f.png" class="ios-emoji" alt="👟">
+      </h2>
       <p style="margin-top: 8px; color: #cbd5e1; font-size: 0.95rem;">هذا الحذاء الرياضي المميز أهديته لك خصيصاً لأنك تستحقه!</p>
       <img class="shoe-img" src="https://www.pngall.com/wp-content/uploads/5/White-Nike-Air-Force-1-Low-Sneaker-PNG.png" alt="الحذاء الرياضي">
     </div>
