@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>محرر الكود المباشر | HTM Creates Clone</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: system-ui, sans-serif; background: #1e1e2e; color: #fff; height: 100vh; display: flex; flex-direction: column; }
+    header { background: #181825; padding: 15px 20px; border-bottom: 1px solid #313244; display: flex; justify-content: space-between; align-items: center; }
+    h1 { font-size: 1.2rem; color: #cdd6f4; }
+    .container { display: flex; flex: 1; height: calc(100vh - 60px); }
+    .editors { width: 50%; display: flex; flex-direction: column; border-left: 1px solid #313244; background: #1e1e2e; }
+    .editor-box { flex: 1; display: flex; flex-direction: column; border-bottom: 1px solid #313244; }
+    .editor-box label { background: #313244; padding: 5px 12px; font-size: 0.85rem; color: #a6adc8; font-weight: bold; }
+    textarea { flex: 1; background: #1e1e2e; color: #a6e3a1; border: none; padding: 10px; font-family: monospace; font-size: 0.95rem; resize: none; outline: none; }
+    .preview { width: 50%; background: #ffffff; }
+    iframe { width: 100%; height: 100%; border: none; }
+    @media (max-width: 768px) {
+      .container { flex-direction: column; }
+      .editors, .preview { width: 100%; height: 50%; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>محرر ومستعرض الكود المباشر</h1>
+  </header>
+
+  <div class="container">
+    <!-- منطقة كتابة الكود -->
+    <div class="editors">
+      <div class="editor-box">
+        <label>HTML</label>
+        <textarea id="html" placeholder="اكتب كود HTML هنا..."></textarea>
+      </div>
+      <div class="editor-box">
+        <label>CSS</label>
+        <textarea id="css" placeholder="اكتب كود CSS هنا..."></textarea>
+      </div>
+      <div class="editor-box">
+        <label>JavaScript</label>
+        <textarea id="js" placeholder="اكتب كود JS هنا..."></textarea>
+      </div>
+    </div>
+
+    <!-- منطقة المعاينة الحية -->
+    <div class="preview">
+      <iframe id="output"></iframe>
+    </div>
+  </div>
+
+  <script>
+    function runCode() {
+      const html = document.getElementById('html').value;
+      const css = "<style>" + document.getElementById('css').value + "</style>";
+      const js = "<script>" + document.getElementById('js').value + "<\/script>";
+      
+      const output = document.getElementById('output').contentWindow.document;
+      output.open();
+      output.write(html + css + js);
+      output.close();
+    }
+
+    // تشغيل الكود تلقائياً أثناء الكتابة
+    document.getElementById('html').addEventListener('input', runCode);
+    document.getElementById('css').addEventListener('input', runCode);
+    document.getElementById('js').addEventListener('input', runCode);
+
+    // كود افتراضي مبدئي
+    document.getElementById('html').value = '<h1 class="title">مرحباً بك!</h1>\n<p>اكتب كودك هنا وتأكد من النتيجة فوراً.</p>';
+    document.getElementById('css').value = 'body {\n  font-family: sans-serif;\n  text-align: center;\n  padding-top: 50px;\n}\n.title {\n  color: #89b4fa;\n}';
+    runCode();
+  </script>
+
+</body>
+</html>
