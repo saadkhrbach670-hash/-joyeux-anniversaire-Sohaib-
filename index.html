@@ -7,46 +7,161 @@
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #0f172a; color: #f8fafc; text-align: center; padding: 20px; min-height: 100vh; }
-    .card { background: #1e293b; max-width: 650px; margin: 20px auto; padding: 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); border: 2px solid #38bdf8; }
-    h1 { color: #38bdf8; font-size: 2.2rem; margin-bottom: 10px; }
-    p.subtitle { color: #94a3b8; font-size: 1.1rem; margin-bottom: 25px; }
     
+    body { 
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, "Apple Color Emoji", "Segoe UI Emoji", sans-serif; 
+      background: #090d16; 
+      color: #f8fafc; 
+      text-align: center; 
+      padding: 20px 15px; 
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .card { 
+      background: rgba(30, 41, 59, 0.7); 
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      width: 100%;
+      max-width: 500px; 
+      padding: 30px 20px; 
+      border-radius: 28px; 
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), inset 0 1px 1px rgba(255, 255, 255, 0.1); 
+      border: 1px solid rgba(255, 255, 255, 0.08); 
+    }
+
+    h1 { 
+      color: #38bdf8; 
+      font-size: 2rem; 
+      font-weight: 800;
+      margin-bottom: 8px; 
+      letter-spacing: -0.5px;
+    }
+
+    p.subtitle { 
+      color: #94a3b8; 
+      font-size: 1rem; 
+      margin-bottom: 25px; 
+    }
+
     /* الكعكة والشمعة */
-    .cake-container { margin: 20px 0; cursor: pointer; display: inline-block; position: relative; }
-    .cake { font-size: 80px; }
-    .flame { font-size: 30px; position: absolute; top: -15px; left: 50%; transform: translateX(-50%); animation: flicker 0.6s infinite alternate; }
-    @keyframes flicker { 0% { opacity: 1; transform: translateX(-50%) scale(1); } 100% { opacity: 0.7; transform: translateX(-50%) scale(1.2); } }
-    
+    .cake-container { 
+      margin: 15px 0 25px 0; 
+      cursor: pointer; 
+      display: inline-block; 
+      position: relative; 
+      user-select: none;
+    }
+    .cake { font-size: 85px; }
+    .flame { 
+      font-size: 32px; 
+      position: absolute; 
+      top: -18px; 
+      left: 50%; 
+      transform: translateX(-50%); 
+      animation: flicker 0.6s infinite alternate; 
+    }
+    @keyframes flicker { 0% { opacity: 1; transform: translateX(-50%) scale(1); } 100% { opacity: 0.75; transform: translateX(-50%) scale(1.2); } }
+
     /* الرسالة */
-    .message-box { background: #334155; padding: 20px; border-radius: 12px; margin: 20px 0; font-size: 1.1rem; line-height: 1.8; color: #e2e8f0; text-align: right; }
-    
-    /* الأزرار */
-    .btn { background: #ec4899; color: white; border: none; padding: 12px 25px; font-size: 1rem; font-weight: bold; border-radius: 30px; cursor: pointer; transition: 0.3s; margin: 10px 5px; }
-    .btn:hover { background: #db2777; transform: scale(1.05); }
-    .btn-gift { background: #eab308; color: #0f172a; }
-    .btn-audio { background: #22c55e; color: white; width: 100%; margin-top: 10px; text-align: center; display: flex; align-items: center; justify-content: center; gap: 10px; font-size: 1.1rem; }
-    .btn-audio:hover { background: #16a34a; }
+    .message-box { 
+      background: rgba(255, 255, 255, 0.04); 
+      padding: 20px; 
+      border-radius: 20px; 
+      margin: 20px 0; 
+      font-size: 1.05rem; 
+      line-height: 1.8; 
+      color: #e2e8f0; 
+      text-align: right; 
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    /* أزرار عصرية بأسلوب iOS Glassmorphism */
+    .btn-group {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .btn { 
+      position: relative;
+      background: linear-gradient(135deg, rgba(236, 72, 153, 0.9), rgba(219, 39, 119, 0.9)); 
+      color: white; 
+      border: 1px solid rgba(255, 255, 255, 0.2); 
+      padding: 16px 20px; 
+      font-size: 1.05rem; 
+      font-weight: 700; 
+      border-radius: 18px; 
+      cursor: pointer; 
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1); 
+      box-shadow: 0 8px 20px rgba(236, 72, 153, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .btn:active { transform: scale(0.96); }
+
+    .btn-audio { 
+      background: linear-gradient(135deg, rgba(34, 197, 94, 0.9), rgba(22, 163, 74, 0.9)); 
+      box-shadow: 0 8px 20px rgba(34, 197, 94, 0.3);
+    }
+
+    .btn-gift { 
+      background: linear-gradient(135deg, rgba(234, 179, 8, 0.9), rgba(202, 138, 4, 0.9)); 
+      color: #0f172a;
+      box-shadow: 0 8px 20px rgba(234, 179, 8, 0.3);
+    }
 
     /* قسم الأصوات والهدايا */
-    .audio-section { background: #0f172a; padding: 20px; border-radius: 15px; margin: 20px 0; border: 1px solid #22c55e; }
-    .gift-box { display: none; margin-top: 25px; background: #0f172a; padding: 20px; border-radius: 15px; border: 2px dashed #eab308; animation: fadeIn 0.8s ease-in-out; }
-    .shoe-img { width: 100%; max-width: 350px; border-radius: 12px; margin-top: 15px; filter: drop-shadow(0px 10px 15px rgba(234, 179, 8, 0.4)); }
+    .audio-section { 
+      background: rgba(15, 23, 42, 0.6); 
+      padding: 18px; 
+      border-radius: 22px; 
+      margin: 20px 0; 
+      border: 1px solid rgba(34, 197, 94, 0.3); 
+    }
 
-    @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    .gift-box { 
+      display: none; 
+      margin-top: 25px; 
+      background: rgba(15, 23, 42, 0.8); 
+      padding: 20px; 
+      border-radius: 22px; 
+      border: 2px dashed #eab308; 
+      animation: fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1); 
+    }
+
+    .shoe-img { 
+      width: 100%; 
+      max-width: 320px; 
+      border-radius: 16px; 
+      margin-top: 15px; 
+      filter: drop-shadow(0px 12px 20px rgba(234, 179, 8, 0.35)); 
+      transition: transform 0.3s ease;
+    }
+
+    .shoe-img:hover { transform: scale(1.03) rotate(-2deg); }
+
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
   </style>
 </head>
 <body>
 
   <div class="card">
     <h1>🎉 عيد ميلاد سعيد يا صهايب! 🎉</h1>
-    <p class="subtitle">موقع تجريبي خاص تم إنشاؤه من طرف سعد ⚽</p>
+    <p class="subtitle">موقع خاص تم إنشاؤه وبرمجته خصيصاً لك من طرف سعد ⚽</p>
 
     <!-- كعكة الشمعة -->
     <div class="cake-container" onclick="blowCandle()">
       <div id="flame" class="flame">🔥</div>
       <div class="cake">🎂</div>
-      <p style="font-size: 0.85rem; color: #94a3b8; margin-top: 5px;">(اضغط على الكعكة لإطفاء الشمعة! 🥳)</p>
+      <p style="font-size: 0.85rem; color: #94a3b8; margin-top: 8px;">(اضغط على الكعكة لإطفاء الشمعة! 🥳)</p>
     </div>
 
     <!-- رسالة التهنئة -->
@@ -55,22 +170,24 @@
       <p>أردت أن أقدم لك هدية مختلفة ومميزة هذا العام. شكراً لك على كل الأوقات واللحظات الجيدة، وأتمنى لك سنة جديدة مليئة بالنجاح، السعادة، وكل التوفيق!</p>
     </div>
 
-    <!-- قسم التجربة الصوتية بلامين يامال -->
+    <!-- قسم الأصوات -->
     <div class="audio-section">
-      <h3 style="color: #22c55e; margin-bottom: 12px;">🎙️ تجربة التهنئة الصوتية:</h3>
+      <h3 style="color: #4ade80; margin-bottom: 12px; font-size: 1.1rem;">🎙️ التهنئة الصوتية الخاصة:</h3>
       <button class="btn btn-audio" onclick="playAudio('https://files.catbox.moe/mue54m.mp3')">
-        <span>⚽ استمع لتهنئة لامين يامال (Lamine Yamal)</span> ▶️
+        <span>⚽ استمع لتهنئة لامين يامال</span> ▶️
       </button>
     </div>
 
-    <!-- أزرار المفاجآت -->
-    <button class="btn" onclick="celebrate()">احتفل الآن! 🎈</button>
-    <button class="btn btn-gift" onclick="openGift()">افتح هديتك الخاصة 🎁</button>
+    <!-- أزرار التفاعل والمفاجآت -->
+    <div class="btn-group">
+      <button class="btn" onclick="celebrate()">احتفل الآن! 🎈</button>
+      <button class="btn btn-gift" onclick="openGift()">افتح هديتك الخاصة 🎁</button>
+    </div>
 
     <!-- مفاجأة الحذاء الرياضي -->
     <div id="giftSection" class="gift-box">
-      <h2 style="color: #eab308; font-size: 1.5rem;">👟 هديتك الخاصة! 👟</h2>
-      <p style="margin-top: 8px; color: #cbd5e1;">هذا الحذاء الرياضي المميز أهديته لك خصيصاً لأنك تستحقه!</p>
+      <h2 style="color: #eab308; font-size: 1.4rem;">👟 هديتك الخاصة! 👟</h2>
+      <p style="margin-top: 8px; color: #cbd5e1; font-size: 0.95rem;">هذا الحذاء الرياضي المميز أهديته لك خصيصاً لأنك تستحقه!</p>
       <img class="shoe-img" src="https://www.pngall.com/wp-content/uploads/5/White-Nike-Air-Force-1-Low-Sneaker-PNG.png" alt="الحذاء الرياضي">
     </div>
   </div>
